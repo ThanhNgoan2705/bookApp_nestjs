@@ -1,0 +1,14 @@
+// install prisma
+npm install prisma --save-dev
+
+// install prisma client
+npx prisma
+
+// init prisma
+npx prisma init
+
+// generate prisma client
+npx prisma generate
+
+// khoi tạo database
+npx prisma migrate dev --name init

@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String?
+  username  String?  @unique
+  password  String
+  phone     String?
+  image     String?
+  token     String?
+  role      String   @default("user")
+  address   String?
+  dateAdded DateTime @default(now())
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  dateAdded DateTime @default(now())
+}
+
+model Book {
+  id        String   @id @default(uuid())
+  title     String   @unique
+  author    String
+  image     String?
+  content   String?
+  category  String?
+  page      Int?
+  views     Int      @default(0)
+  file      String?
+  dateAdded DateTime @default(now())
+}
+
+model Reading {
+  id        String   @id @default(uuid())
+  userId    String
+  bookId    String
+  page      Int      @default(0)
+  dateAdded DateTime @default(now())
+}
+
+model Banner {
+  id        String   @id @default(uuid())
+  image     String
+  dateAdded DateTime @default(now())
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  userId    String
+  bookId    String
+  content   String
+  dateAdded DateTime @default(now())
+}
+
+model FavorateBook {
+  id        String   @id @default(uuid())
+  userId    String
+  bookId    String
+  dateAdded DateTime @default(now())
+}
